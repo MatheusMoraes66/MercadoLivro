@@ -8,6 +8,6 @@ fun PostCustomerRequest.toConvert(): CustomerModel{
     return CustomerModel(name = this.name, email = this.email)
 }
 
-fun PutCustomerRequest.toConvert(): CustomerModel{
-    return CustomerModel(name = this.name, email = this.email)
+fun PutCustomerRequest.toConvert(id: Int): CustomerModel{
+    return CustomerModel(id = id,name = this.name, email = this.email)
 }

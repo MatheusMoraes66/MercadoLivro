@@ -14,7 +14,7 @@ class CustomerService {
         return customers
     }
 
-    fun getOne(id: String): CustomerModel{
+    fun getOne(id: Int): CustomerModel{
         return customers.filter {
             it.id == id
         }.first()
@@ -26,19 +26,19 @@ class CustomerService {
             1
         }else{
             customers.last().id?.toInt()?.plus(1)
-        }.toString()
+        }
 
-        customers.add(CustomerModel("${id}", customer.name, customer.email))
+        customers.add(CustomerModel(id, customer.name, customer.email))
     }
 
-    fun update(id: String, customer: CustomerModel){
-        customers.filter { it.id == id }.first().let {
+    fun update(customer: CustomerModel){
+        customers.filter { it.id == customer.id }.first().let {
             it.email = customer.email
             it.name = customer.name
         }
     }
 
-    fun delete(id: String){
+    fun delete(id: Int){
         customers.removeIf{ it.id == id}
     }
 }
