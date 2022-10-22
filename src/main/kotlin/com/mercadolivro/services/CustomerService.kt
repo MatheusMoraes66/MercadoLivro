@@ -1,10 +1,9 @@
 package com.mercadolivro.services
 
-import com.mercadolivro.dto.PutCustomerRequest
 import com.mercadolivro.models.CustomerModel
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.RequestBody
+import org.springframework.stereotype.Service
 
+@Service
 class CustomerService {
     val customers = mutableListOf<CustomerModel>()
 
