@@ -47,6 +47,7 @@ class CustomerController {
     }
 
     @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     fun change(@PathVariable id: String, @RequestBody customer: PutCustomerRequest){
         customers.filter { it.id == id }.first().let {
             it.email = customer.email
