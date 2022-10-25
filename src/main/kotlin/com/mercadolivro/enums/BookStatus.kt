@@ -1,4 +1,8 @@
 package com.mercadolivro.enums
 
-class BookStatus {
+enum class BookStatus {
+    ATIVO,
+    VENDIDO,
+    CANCELADO,
+    DELETATO
 }
