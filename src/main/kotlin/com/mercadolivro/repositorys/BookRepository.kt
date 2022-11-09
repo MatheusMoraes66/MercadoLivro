@@ -6,4 +6,7 @@ import org.springframework.data.repository.CrudRepository
 
 interface BookRepository: CrudRepository<BookModel, Int>{
     fun findByNameContaining(name: String): List<BookModel>
+
+    fun findByCustomer(customer: CustomerModel): List<BookModel>
+
 }

@@ -1,4 +1,4 @@
-package com.mercadolivro.dto
+package com.mercadolivro.dto.request
 
 data class PostCustomerRequest(
     var name: String,

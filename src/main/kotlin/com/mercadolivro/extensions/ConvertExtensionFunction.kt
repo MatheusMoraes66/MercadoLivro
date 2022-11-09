@@ -1,20 +1,22 @@
 package com.mercadolivro.extensions
 
-import com.mercadolivro.dto.PostBookRequest
-import com.mercadolivro.dto.PostCustomerRequest
-import com.mercadolivro.dto.PutBookRequest
-import com.mercadolivro.dto.PutCustomerRequest
+import com.mercadolivro.dto.request.PostBookRequest
+import com.mercadolivro.dto.request.PostCustomerRequest
+import com.mercadolivro.dto.request.PutBookRequest
+import com.mercadolivro.dto.request.PutCustomerRequest
+import com.mercadolivro.dto.response.BookResponse
+import com.mercadolivro.dto.response.CustomerResponse
 import com.mercadolivro.enums.BookStatus
+import com.mercadolivro.enums.CustomerStatus
 import com.mercadolivro.models.BookModel
 import com.mercadolivro.models.CustomerModel
-import com.mercadolivro.repositorys.CustomerRepository
 
 fun PostCustomerRequest.toConvert(): CustomerModel{
-    return CustomerModel(name = this.name, email = this.email)
+    return CustomerModel(name = this.name, email = this.email, status = CustomerStatus.ATIVO)
 }
 
-fun PutCustomerRequest.toConvert(id: Int): CustomerModel{
-    return CustomerModel(id = id,name = this.name, email = this.email)
+fun PutCustomerRequest.toConvert(oldValue: CustomerModel): CustomerModel{
+    return CustomerModel(id = oldValue.id,name = this.name, email = this.email, status = oldValue.status)
 }
 
 fun PostBookRequest.toConvert(customer: CustomerModel): BookModel{
@@ -27,4 +29,21 @@ fun PutBookRequest.toConvert(oldValue: BookModel): BookModel{
         price = this.price ?: oldValue.price,
         status = oldValue.status,
         customer = oldValue.customer)
+}
+
+fun CustomerModel.toResponse(): CustomerResponse {
+    return CustomerResponse(
+        id = this.id,
+        name = this.name,
+        email = this.email
+    )
+}
+
+fun BookModel.toResponse(): BookResponse {
+    return BookResponse(
+        id = this.id,
+        name = this.name,
+        price = this.price,
+        customer = this.customer?.toResponse()
+    )
 }

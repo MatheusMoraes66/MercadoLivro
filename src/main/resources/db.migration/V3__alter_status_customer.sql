@@ -1,0 +1,1 @@
+ALTER TABLE customer MODIFY COLUMN status varchar(100);
