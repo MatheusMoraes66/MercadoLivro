@@ -7,6 +7,9 @@ import com.mercadolivro.extensions.toConvert
 import com.mercadolivro.extensions.toResponse
 import com.mercadolivro.services.BookService
 import com.mercadolivro.services.CustomerService
+import org.springframework.data.domain.Pageable
+import org.springframework.data.domain.Page
+import org.springframework.data.web.PageableDefault
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 
@@ -18,8 +21,8 @@ class BookController(
 ) {
 
     @GetMapping
-    fun getAll(@RequestParam name: String?): List<BookResponse>{
-        return bookService.findAll(name).map{ it.toResponse()}
+    fun getAll(@PageableDefault(size = 10, page = 0) pageable: Pageable): Page<BookResponse>{
+        return bookService.findAll(pageable).map{ it.toResponse()}
     }
 
     @GetMapping("/{id}")
