@@ -8,4 +8,5 @@ spring:
     password: password
   flyway:
     baselineOnMigrate: true
-
+  jackson:
+    default-property-inclusion: non_null
