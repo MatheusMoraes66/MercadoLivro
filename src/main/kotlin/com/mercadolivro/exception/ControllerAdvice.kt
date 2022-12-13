@@ -17,7 +17,7 @@ class ControllerAdvice(
 ){
     @ExceptionHandler(NotFoundException::class)
     fun handleNotFound(ex: NotFoundException, request: WebRequest): ResponseEntity<ErrorResponse>{
-        var error = ErrorResponse(
+        val error = ErrorResponse(
             HttpStatus.NOT_FOUND.value(),
             ex.message,
             ex.errorCode,
@@ -29,7 +29,7 @@ class ControllerAdvice(
 
     @ExceptionHandler(BadRequestException::class)
     fun handleBadRequest(ex: BadRequestException, request: WebRequest): ResponseEntity<ErrorResponse>{
-        var error = ErrorResponse(
+        val error = ErrorResponse(
             HttpStatus.BAD_REQUEST.value(),
             ex.message,
             ex.errorCode,
@@ -41,7 +41,7 @@ class ControllerAdvice(
 
     @ExceptionHandler(MethodArgumentNotValidException:: class)
     fun handleMethodArgumentsNotValidException(ex: MethodArgumentNotValidException, request: WebRequest): ResponseEntity<ErrorResponse>{
-        var error = ErrorResponse(
+        val error = ErrorResponse(
             HttpStatus.UNPROCESSABLE_ENTITY.value(),
             Errors.ML001.message,
             Errors.ML001.code,
